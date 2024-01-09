@@ -1,7 +1,7 @@
 
 // sten, sax och påse. Först till 3 vinster vinner!
 
-stenSaxPase()
+
 /* Sten, sax och påse */
 function stenSaxPase() {
 
@@ -48,3 +48,4 @@ function stenSaxPase() {
     }
 
 }
+stenSaxPase()
