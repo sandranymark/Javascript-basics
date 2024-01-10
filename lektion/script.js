@@ -72,3 +72,9 @@ Tips! Här kan typeof vara bra att använda
 
 //-------------------------------------------------------------
 
+
+
+
+
+
+let animals = ['cat', 'hamster', 'parrot', 'funky chihuahua']
