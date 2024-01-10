@@ -24,7 +24,7 @@ function highOrLow() {
     window.alert('Du gissade rätt, wohooooooooooooo!!!')
 
     console.log('Du behövde ' + gissningar + ' gissningar för att gissa rätt')
-
+    window.alert('Du behövde ' + gissningar + ' gissningar för att gissa rätt')
 }
 
 highOrLow()
