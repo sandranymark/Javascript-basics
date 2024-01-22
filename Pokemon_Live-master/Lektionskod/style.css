@@ -18,7 +18,7 @@ body {
 
 .card {
     width: 350px;
-    height: 400px;
+    height: 420px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,8 @@ body {
     background-color: black;
     color: white;
     border-radius: 50%;
-    padding: 0.8rem;
+    padding: 1rem;
+    margin: auto;
 }
 
 .card-image {
@@ -61,3 +62,20 @@ body {
 .card-info {
     text-align: center;
 }
+
+.table {
+    border: 1px solid black;
+    width: 100%;
+
+}
+
+.table-cell {
+    border: 1px solid black;
+    width: 50%;
+    padding 1rem;
+}
+
+/* .d-none {
+    display: none;
+
+} */
