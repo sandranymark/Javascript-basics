@@ -104,3 +104,73 @@ function renderCell(statName, stat) {
     cellRef.textContent = statName + ': ' + stat;
     return cellRef;
 }
+
+
+
+
+
+
+//I mappen lektionskod finner ni färdig kod för att kunna visa elementet med classen card-container.
+// Försök nu att lägga lyssnare på de tre olika knapparna, och vis klick på en specifik knapp skall den container
+//som är knutet till den knappen visas på skärmen, samtidigt som de andra två skall gömmas.
+
+const searchBtn = document.getElementById('searchBtn');
+
+searchBtn.addEventListener('click', () => {
+    const searchInput = document.getElementById('searchInput').value;
+    const pokemon = pokemons.find(pokemon => pokemon.name.toLowerCase() === searchInput.toLowerCase() || pokemon.id.toString() === searchInput);
+    if (pokemon) {
+        showOnlyContainer('cardContainer');
+        renderCard(pokemon);
+    } else {
+        alert('Pokemon not found');
+    }
+});
+
+
+
+
+
+const pokedexBtn = document.getElementById('pokedexBtn');
+const searchPokemonBtn = document.getElementById('searchPokemonBtn');
+const generatePokemonBtn = document.getElementById('generateBtn');
+
+const containers = ['cardContainer', 'searchFormContainer', 'randomGenContainer'];
+
+function showOnlyContainer(containerId) {
+    containers.forEach(id => {
+        const container = document.getElementById(id);
+        if (container) {
+            container.style.display = id === containerId ? 'block' : 'none';
+        }
+        const pokemon = pokemon.find(pokemon => pokemon.name.toLowerCase() === searchInput.toLowerCase() || pokemon.id.toString() === searchInput);
+        if (pokemon) {
+            renderCard(pokemon);
+        } else {
+            // No Pokemon with the specified name was found
+            // You can display an error message
+            alert('Pokemon not found');
+        }
+
+    });
+}
+
+pokedexBtn.addEventListener('click', () => showOnlyContainer('cardContainer'));
+searchPokemonBtn.addEventListener('click', () => showOnlyContainer('searchFormContainer'));
+generatePokemonBtn.addEventListener('click', () => showOnlyContainer('randomGenContainer'));
+
+
+
+
+// Search for the Pokemon in the pokemons array
+
+
+
+
+
+
+
+//I form-container skulle ni kunna skapa ett formulär där användaren får söka på antingen namnet,
+//eller id:t, på en pokemon. Vid en sökning skall 1 st kort med just den eftersökta pokemonen visas på skärmen.
+//I random-generator skulle ni kunna slumpa fram X antal pokemons u pokemons-arrayen, och visa dem som kort på sidan.
+//Ändra gärna på stylingen om ni vill ha ett snyggare GUI.
