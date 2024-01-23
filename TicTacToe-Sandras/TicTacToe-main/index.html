@@ -21,7 +21,7 @@
     <main class="container">
         <div class="jumbotron text-center">
             <h1>TicTacToe</h1>
-            <p id="errorMsg">Fyll i nicknames samt färg och börja spela!</p>
+            <p id="errorMsg"></p>
         </div>
         <form action="index.html" method="get" id="theForm">
             <div id="divInForm" class="mt-5 row">
@@ -52,7 +52,7 @@
         </form>
 
         <!-- Gui för spelplan-->
-        <div id="gameArea" class="game-area">
+        <div id="gameArea" class="game-area d-none">
             <!-- Varje tabell-cell(td) märks med attributet data-id 
                 som motsvarar vektor-index i gameField -->
             <table class="ml-auto mr-auto">
@@ -77,23 +77,7 @@
 
     <script src="script.js"></script>
     <script>
-        //Testutskrifter
-        console.log(oGameData);
-        console.log(oGameData.gameField);
-        console.log(checkForGameOver());
-
-        if (checkForGameOver() === 1) {
-            console.log("Spelare X har vunnit!");
-        }
-        if (checkForGameOver() === 2) {
-            console.log("Spelare O har vunnit!");
-        }
-        if (checkForGameOver() === 3) {
-            console.log("Spelet slutade oavgjort");
-        }
-        else {
-            console.log("Spelet fortsätter");
-        }
+        document.addEventListener('DOMContentLoaded', prepGame);
     </script>
 </body>
 
