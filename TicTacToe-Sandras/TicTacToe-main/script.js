@@ -84,6 +84,7 @@ function prepGame() {
 
 function initiateGame() {
 
+
     let form = document.getElementById("theForm");
     let gameArea = document.getElementById("gameArea");
     let jumbotronText = document.querySelector(".jumbotron h1");
@@ -134,4 +135,69 @@ function initiateGame() {
             jumbotronText.textContent = `Oavgjort`;
         }
     });
+
+
+    //NYA KODEN - FUNGERAR INTE FÖR TILLFÄLLET 
+
+    function validateForm() {
+        let nick1 = document.getElementById("nick1");
+        let nick2 = document.getElementById("nick2");
+        let color1 = document.getElementById("color1");
+        let color2 = document.getElementById("color2");
+
+        if (nick1.value.length < 3 || nick1.value.length > 10) {
+            alert("Användarnamnet måste vara mellan 3 och 10 tecken långt.");
+            return false;
+        }
+
+        if (nick2.value.length < 3 || nick2.value.length > 10) {
+            alert("Användarnamnet måste vara mellan 3 och 10 tecken långt.");
+            return false;
+        }
+
+        if (color1.value === "black" || color1.value === "white") {
+            alert("Den valda färgen får inte vara svart eller vit.");
+            return false;
+        }
+
+        if (color2.value === "black" || color2.value === "white") {
+            alert("Den valda färgen får inte vara svart eller vit.");
+            return false;
+        }
+
+        return true;
+    }
+
+    if (validateForm()) {
+        initiateGame();
+    }
+
+
 }
+
+// Krav för att få spela:
+
+// Användarnamnet måste vara mellan 3 och 10 tecken långt.
+// Den valda färgen får inte vara svart eller vit.
+
+
+
+
+
+
+
+
+
+
+
+
+// Denna vecka höjer vi svårighetsgraden något genom att inte ange några detaljerade steg-för-steginstruktioner.
+//Kortfattat så skall ni i "prepGame()" anropa funktionen "validateForm()" istället för "initiateGame()".
+//Först efter att "validateForm()" returnerat true anropar ni "initiateGame()".
+
+// validateForm()
+
+// Lägg gärna till egna saker att kolla efter också.
+// Bonusfunktion: timer()
+// Om ni vill utmana er själva lite så kan ni även implementera en timer som kickar igång varje gång det blir en ny spelares tur,
+//har hen 5 sekunder på sig att göra sitt drag. Har man inte gjort sitt drag innan tiden löper ut, byter ni till den andre spelaren.
