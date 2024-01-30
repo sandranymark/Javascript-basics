@@ -11,9 +11,6 @@ class Player {
 }
 
 
-
-
-
 class Game {
     seconds = 5;
     showTimer = false;
@@ -26,23 +23,22 @@ class Game {
     }
 
     move(index) {
-        this.gameField[index] = this.currentPlayer.char;
-        console.log(index, "Making a move on the field")
-        console.log(this.gameField, "Current gamefield");
+        return new Promise((resolve) => {
+            this.gameField[index] = this.currentPlayer.char;
+            console.log(index, "Making a move on the field");
+            console.log(this.gameField, "Current gamefield");
 
-        if (this.isWinner(this.currentPlayer)) {
-            this.gameOver(this.currentPlayer);
-            return;
-        }
-
-        // Spelet är utan vinnare, det är oavgjort.
-        if (this.gameCompleted()) {
-            this.gameOver();
-            return;
-        }
-
-        game.switchPlayer();
-
+            if (this.isWinner(this.currentPlayer)) {
+                this.gameOver(this.currentPlayer);
+                resolve(); // Resolve the promise after handling the game over logic
+            } else if (this.gameCompleted()) {
+                this.gameOver();
+                resolve(); // Resolve the promise after handling the game over logic
+            } else {
+                game.switchPlayer();
+                resolve(); // Resolve the promise to indicate the move is complete
+            }
+        });
     }
 
     switchPlayer() {
@@ -96,6 +92,7 @@ function validateForm() {
     let color2 = document.getElementById("color2");
 
     if (nick1.value.length < 3 || nick1.value.length > 10) {
+
         alert("Användarnamnet måste vara mellan 3 och 10 tecken långt.");
         return false;
     }
@@ -105,15 +102,16 @@ function validateForm() {
         return false;
     }
 
-    if (color1.value === "#000000" || color1.value === "#ffffff") {
+    if (color1.value.toLowerCase() === "#000000" || color1.value.toLowerCase() === "#ffffff") {
         alert("Den valda färgen får inte vara svart eller vit.");
         return false;
     }
 
-    if (color2.value === "#000000" || color2.value === "#ffffff") {
+    if (color2.value.toLowerCase() === "#000000" || color2.value.toLowerCase() === "#ffffff") {
         alert("Den valda färgen får inte vara svart eller vit.");
         return false;
-    } return true;
+    }
+    return true;
 }
 
 
@@ -145,8 +143,10 @@ function initiateGame() {
 
     let cellClicked = function (event) {
         event.target.innerHTML = game.currentPlayer.char;
-        let index = event.target.getAttribute('data-id');;
-        game.move(index);
+        let index = event.target.getAttribute('data-id');
+        game.move(index).then(() => {
+            // Any code you want to execute after the move is complete
+        });
     }
     // Sätt upp spelplanen
     // Använder for-loop för något bättre prestanda, använd foreach för bättre läsbarhet.
